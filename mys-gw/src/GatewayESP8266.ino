@@ -67,16 +67,23 @@
 
 // Enable debug prints to serial monitor
 #define MY_DEBUG
-
+#define MY_DEBUG_VERBOSE
 // Use a bit lower baudrate for serial prints on ESP8266 than default in MyConfig.h
 #define MY_BAUD_RATE 9600
 
 // Enables and select radio type (if attached)
 //#define MY_RADIO_NRF24
 #define MY_RADIO_RFM69
-#define MY_RFM69_FREQUENCY RF69_868MHZ
+#define MY_RFM69_FREQUENCY RFM69_868MHZ
 #define MY_IS_RFM69HW
-
+#define MY_RFM69_NEW_DRIVER
+#define MY_DEBUG_VERBOSE_RFM69
+//#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
+#define MY_RFM69_MAX_POWER_LEVEL_DBM (1u)
+#define MY_RF69_IRQ_PIN D1
+#define MY_RF69_IRQ_NUM MY_RF69_IRQ_PIN
+#define MY_RF69_SPI_CS D8 // NSS. Use MY_RFM69_CS_PIN for the development branch.
+#define MY_RF69_CS_PIN D8 // NSS. Use MY_RFM69_CS_PIN for the development branch.
 //#define MY_RADIO_RFM95
 
 #define MY_GATEWAY_ESP8266

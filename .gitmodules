@@ -1,0 +1,6 @@
+[submodule "mys-gw/lib/MySensors"]
+	path = mys-gw/lib/MySensors
+	url = https://github.com/mysensors/MySensors.git
+[submodule "mys-sw1/lib/MySensors"]
+	path = mys-sw1/lib/MySensors
+	url = https://github.com/mysensors/MySensors.git

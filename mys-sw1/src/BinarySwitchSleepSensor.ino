@@ -29,16 +29,20 @@
  *
  */
 
-
-// Enable debug prints to serial monitor
+//#define MY_NODE_ID (17)
+//// Enable debug prints to serial monitor
 #define MY_DEBUG
-
+#define MY_DEBUG_VERBOSE
 // Enable and select radio type attached
 //#define MY_RADIO_NRF24
 //#define MY_RADIO_NRF5_ESB
 #define MY_RADIO_RFM69
-#define MY_RFM69_FREQUENCY RF69_868MHZ
+#define MY_RFM69_FREQUENCY RFM69_868MHZ
 #define MY_IS_RFM69HW
+#define MY_RFM69_NEW_DRIVER
+#define MY_DEBUG_VERBOSE_RFM69
+//#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
+#define MY_RFM69_MAX_POWER_LEVEL_DBM (1u)
 
 //#define MY_RADIO_RFM95
 
@@ -74,6 +78,7 @@ MyMessage msg(PRIMARY_CHILD_ID, V_TRIPPED);
 
 void setup()
 {
+  Serial.println("Helloo");
 	// Setup the buttons
 	pinMode(PRIMARY_BUTTON_PIN, INPUT_PULLUP);
 	//	pinMode(SECONDARY_BUTTON_PIN, INPUT_PULLUP);
@@ -81,6 +86,7 @@ void setup()
 
 void presentation()
 {
+  Serial.println("present");
 	// Send the sketch version information to the gateway and Controller
 	sendSketchInfo(SKETCH_NAME, SKETCH_MAJOR_VER "." SKETCH_MINOR_VER);
 
@@ -97,6 +103,7 @@ void loop()
 	uint8_t value;
 	static uint8_t sentValue=2;
 	//	static uint8_t sentValue2=2;
+  Serial.print("loop");
 
 	// Short delay to allow buttons to properly settle
 	sleep(5);
