@@ -81,7 +81,7 @@
 
 #define MY_GATEWAY_ESP8266
 
-include "secret.h"
+#include "secret.h"
 
 // Enable UDP communication
 //#define MY_USE_UDP  // If using UDP you need to set MY_CONTROLLER_IP_ADDRESS below
