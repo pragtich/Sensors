@@ -48,9 +48,9 @@
 
 #include <MySensors.h>
 
-#define SKETCH_NAME "Button Sensor"
+#define SKETCH_NAME "Test Button Sensor"
 #define SKETCH_MAJOR_VER "1"
-#define SKETCH_MINOR_VER "0"
+#define SKETCH_MINOR_VER "1"
 
 #define PRIMARY_CHILD_ID 3
 #define SECONDARY_CHILD_ID 4
@@ -86,14 +86,13 @@ void setup()
 
 void presentation()
 {
-  Serial.println("present");
 	// Send the sketch version information to the gateway and Controller
 	sendSketchInfo(SKETCH_NAME, SKETCH_MAJOR_VER "." SKETCH_MINOR_VER);
 
 	// Register binary input sensor to sensor_node (they will be created as child devices)
 	// You can use S_DOOR, S_MOTION or S_LIGHT here depending on your usage.
 	// If S_LIGHT is used, remember to update variable type you send in. See "msg" above.
-	present(PRIMARY_CHILD_ID, S_DOOR);
+	present(PRIMARY_CHILD_ID, S_BINARY);
 	//present(SECONDARY_CHILD_ID, S_DOOR);
 }
 
@@ -112,7 +111,7 @@ void loop()
 
 	if (value != sentValue) {
 		// Value has changed from last transmission, send the updated value
-		send(msg.set(value==HIGH));
+	  send(msg.set(value==HIGH?1:0));
 		sentValue = value;
 	}
 
