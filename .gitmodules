@@ -4,3 +4,6 @@
 [submodule "mys-sw1/lib/MySensors"]
 	path = mys-sw1/lib/MySensors
 	url = https://github.com/mysensors/MySensors.git
+[submodule "MySensors"]
+	path = MySensors
+	url = https://github.com/mysensors/MySensors.git
