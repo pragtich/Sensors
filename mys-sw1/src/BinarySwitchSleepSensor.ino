@@ -41,7 +41,7 @@
 #define MY_IS_RFM69HW
 #define MY_RFM69_NEW_DRIVER
 #define MY_DEBUG_VERBOSE_RFM69
-#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
+//#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
 #define RFM69_REGISTER_DETAIL
 #define MY_RFM69_MAX_POWER_LEVEL_DBM (1u)
 
@@ -51,10 +51,10 @@
 
 #define SKETCH_NAME "Test Button Sensor"
 #define SKETCH_MAJOR_VER "1"
-#define SKETCH_MINOR_VER "1"
+#define SKETCH_MINOR_VER "2"
 
-#define PRIMARY_CHILD_ID 3
-#define SECONDARY_CHILD_ID 4
+#define PRIMARY_CHILD_ID 4
+#define SECONDARY_CHILD_ID 5
 
 #define PRIMARY_BUTTON_PIN 3   // Arduino Digital I/O pin for button/reed switch
 //#define SECONDARY_BUTTON_PIN 2 // Arduino Digital I/O pin for button/reed switch
@@ -74,7 +74,7 @@
 
 
 // Change to V_LIGHT if you use S_LIGHT in presentation below
-MyMessage msg(PRIMARY_CHILD_ID, V_TRIPPED);
+MyMessage msg(PRIMARY_CHILD_ID, V_STATUS);
 //MyMessage msg2(SECONDARY_CHILD_ID, V_TRIPPED);
 
 void setup()
@@ -98,13 +98,24 @@ void presentation()
 }
 
 // Loop will iterate on changes on the BUTTON_PINs
+bool doinit  = true;
+
 void loop()
 {
 	uint8_t value;
 	static uint8_t sentValue=2;
+	
 	//	static uint8_t sentValue2=2;
   Serial.print("loop");
-
+  if (doinit) {
+    Serial.println("Sending first 1");
+    send(msg.set(1));
+    Serial.println("Sending first 0");
+    send(msg.set(0));
+    Serial.println("Requesting initial value from controller");
+    request(PRIMARY_CHILD_ID, V_STATUS);
+    wait(2000, C_SET, V_STATUS);
+  }
 	// Short delay to allow buttons to properly settle
 	sleep(5);
 
@@ -126,4 +137,21 @@ void loop()
 
 	// Sleep until something happens with the sensor
 	sleep(PRIMARY_BUTTON_PIN-2, CHANGE, PRIMARY_BUTTON_PIN-2, CHANGE, 0);
+}
+
+void receive(const MyMessage &message) {
+  if (message.isAck()) {
+     Serial.println("This is an ack from gateway");
+  }
+
+  if (message.type == V_STATUS) {
+    if (doinit) {
+      Serial.println("Receiving initial value from controller");
+      doinit = false; 
+    }
+    // Change relay state
+    bool state = (bool)message.getInt();
+    //    digitalWrite(RELAY_PIN, state?RELAY_ON:RELAY_OFF);
+    send(msg.set(state?0:1));
+  }
 }
