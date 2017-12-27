@@ -53,7 +53,7 @@
 #define SKETCH_MAJOR_VER "1"
 #define SKETCH_MINOR_VER "2"
 
-#define PRIMARY_CHILD_ID 4
+#define PRIMARY_CHILD_ID 1
 #define SECONDARY_CHILD_ID 5
 
 #define PRIMARY_BUTTON_PIN 3   // Arduino Digital I/O pin for button/reed switch
@@ -79,7 +79,6 @@ MyMessage msg(PRIMARY_CHILD_ID, V_STATUS);
 
 void setup()
 {
-  Serial.println("Helloo");
 	// Setup the buttons
 	pinMode(PRIMARY_BUTTON_PIN, INPUT_PULLUP);
 	//	pinMode(SECONDARY_BUTTON_PIN, INPUT_PULLUP);
@@ -108,8 +107,6 @@ void loop()
 	//	static uint8_t sentValue2=2;
   Serial.print("loop");
   if (doinit) {
-    Serial.println("Sending first 1");
-    send(msg.set(1));
     Serial.println("Sending first 0");
     send(msg.set(0));
     Serial.println("Requesting initial value from controller");
