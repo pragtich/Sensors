@@ -29,7 +29,7 @@ e/**
  *
  */
 
-//#define MY_NODE_ID (17)
+#define MY_NODE_ID (11)
 //// Enable debug prints to serial monitor
 #define MY_DEBUG
 #define MY_DEBUG_VERBOSE
