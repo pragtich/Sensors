@@ -41,20 +41,18 @@ e/**
 #define MY_IS_RFM69HW
 #define MY_RFM69_NEW_DRIVER
 #define MY_DEBUG_VERBOSE_RFM69
-//#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
+#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
 #define RFM69_REGISTER_DETAIL
 #define MY_RFM69_MAX_POWER_LEVEL_DBM (1u)
 
-//#define MY_RADIO_RFM95
-
 #include <MySensors.h>
 
-#define SKETCH_NAME "Test Button Sensor"
+#define SKETCH_NAME "Deur01"
 #define SKETCH_MAJOR_VER "1"
-#define SKETCH_MINOR_VER "2"
+#define SKETCH_MINOR_VER "0"
 
 #define PRIMARY_CHILD_ID 1
-#define SECONDARY_CHILD_ID 5
+#define SECONDARY_CHILD_ID 2
 
 #define PRIMARY_BUTTON_PIN 3   // Arduino Digital I/O pin for button/reed switch
 //#define SECONDARY_BUTTON_PIN 2 // Arduino Digital I/O pin for button/reed switch
@@ -80,7 +78,7 @@ MyMessage msg(PRIMARY_CHILD_ID, V_STATUS);
 void setup()
 {
 	// Setup the buttons
-	pinMode(PRIMARY_BUTTON_PIN, INPUT_PULLUP);
+  pinMode(PRIMARY_BUTTON_PIN, INPUT_PULLUP);   \\ TODO: hardware pullups to save power
 	//	pinMode(SECONDARY_BUTTON_PIN, INPUT_PULLUP);
 }
 
@@ -92,7 +90,7 @@ void presentation()
 	// Register binary input sensor to sensor_node (they will be created as child devices)
 	// You can use S_DOOR, S_MOTION or S_LIGHT here depending on your usage.
 	// If S_LIGHT is used, remember to update variable type you send in. See "msg" above.
-	present(PRIMARY_CHILD_ID, S_BINARY);
+	present(PRIMARY_CHILD_ID, S_BINARY);   \\ TODO: S_DOOR?
 	//present(SECONDARY_CHILD_ID, S_DOOR);
 }
 
@@ -105,13 +103,10 @@ void loop()
 	static uint8_t sentValue=2;
 	
 	//	static uint8_t sentValue2=2;
-  Serial.print("loop");
-  if (doinit) {
-    Serial.println("Sending first 0");
-    send(msg.set(0));
-    Serial.println("Requesting initial value from controller");
-    request(PRIMARY_CHILD_ID, V_STATUS);
-    wait(2000, C_SET, V_STATUS);
+	if (doinit) {
+	  send(msg.set(0));
+	  request(PRIMARY_CHILD_ID, V_STATUS);
+	  wait(2000, C_SET, V_STATUS);
   }
 	// Short delay to allow buttons to properly settle
 	sleep(5);
