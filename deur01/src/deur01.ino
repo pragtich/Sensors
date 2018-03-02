@@ -33,9 +33,11 @@ void before() {
   /*
    * Register below your sensors
   */
+  nodeManager.setBatteryMin(1.8);
+  nodeManager.setBatteryMin(3.2);  
+  nodeManager.setSleepMinutes(1);
   
-  
-
+  nodeManager.registerSensor(SENSOR_DOOR, 3);
   
   /*
    * Register above your sensors
