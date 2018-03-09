@@ -5,7 +5,7 @@
  * Sketch configuration
  */
 
-#define SKETCH_NAME "Deur 01"
+#define SKETCH_NAME "Deur1"
 #define SKETCH_VERSION "1.0"
 
 /**********************************
@@ -15,8 +15,8 @@
 // General settings
 #define MY_BAUD_RATE 9600
 #define MY_DEBUG
-#define MY_NODE_ID 11
-//#define MY_SMART_SLEEP_WAIT_DURATION_MS 500
+#define MY_NODE_ID 12
+#define MY_SMART_SLEEP_WAIT_DURATION_MS 100
 
 // NRF24 radio settings
 //#define MY_RADIO_NRF24
@@ -123,7 +123,7 @@
 // if enabled, a battery sensor will be created at BATTERY_CHILD_ID (201 by default) and will report vcc voltage together with the battery level percentage
 #define BATTERY_SENSOR 1
 // if enabled, a signal sensor will be created at RSSI_CHILD_ID (202 by default) and will report the signal quality of the transport layer
-#define SIGNAL_SENSOR 0
+#define SIGNAL_SENSOR 1
 // if enabled, send a SLEEPING and AWAKE service messages just before entering and just after leaving a sleep cycle and STARTED when starting/rebooting
 //#define SERVICE_MESSAGES 0
 
