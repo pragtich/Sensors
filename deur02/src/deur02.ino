@@ -372,7 +372,7 @@ void before() {
   node.setReportIntervalSeconds(40);
   //  battery.setReportIntervalSeconds(40);
   signal.setReportIntervalSeconds(30);
-  door.setReportIntervalSeconds(40);
+  door.setReportIntervalMinutes(5);
   
   //  door.setReportIntervalSeconds(30);
   //  battery.setReportIntervalSeconds(30);
