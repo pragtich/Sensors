@@ -362,7 +362,7 @@ SensorDoor door(node,3);
  * Main Sketch
  */
 
-#define DOOR_SECONDS (20)
+#define DOOR_SECONDS (60)
 
 void DoorLoop(Sensor *sensor) {
   // read the value
@@ -414,7 +414,7 @@ void before() {
   // report measures of every attached sensors every 10 minutes
   //node.setReportIntervalMinutes(10);
   // set the node to sleep in 5 minutes cycles
-  node.setSleepSeconds(10);
+  node.setSleepSeconds(60);
   // report battery level every 10 minutes
   //battery.setReportIntervalMinutes(10);
   // set an offset to -1 to a thermistor sensor
@@ -425,7 +425,14 @@ void before() {
   //analog.children.get(1)->min_threshold = 40;
   // power all the nodes through dedicated pins
   //node.setPowerManager(power);
+  //
 
+  // Disable smartSleep (messages that I am not using)
+  node.setSmartSleep(false);
+  // Enable ACK (to get ATC)
+  node.setAck(true);
+
+  // Setup regular messaging from Door sensor even if status constants
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
   door.setInterruptHook(DoorInterrupt);
