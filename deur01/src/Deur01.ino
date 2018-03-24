@@ -133,9 +133,17 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
 #define MY_RFM69_FREQUENCY RFM69_868MHZ
 #define MY_IS_RFM69HW
 #define MY_RFM69_NEW_DRIVER
+
+//#define MY_RFM69_ATC_TARGET_RSSI_DBM (-70)  // target RSSI -70dBm
+//#define MY_RFM69_MAX_POWER_LEVEL_DBM (10)   // max. TX power 10dBm = 10mW
+
+// Prevent spurious NACKs due to slow ACK from gateway
+#define RFM69_RETRY_TIMEOUT_MS (2000ul) 
+
+
 //#define MY_RFM69_ENABLE_ENCRYPTION
 //#define MY_RFM69_NETWORKID 100
-//#define MY_DEBUG_VERBOSE_RFM69
+#define MY_DEBUG_VERBOSE_RFM69
 //#define MY_RF69_IRQ_PIN D1
 //#define MY_RF69_IRQ_NUM MY_RF69_IRQ_PIN
 //#define MY_RF69_SPI_CS D2
@@ -429,7 +437,7 @@ void before() {
 
   // Disable smartSleep (messages that I am not using)
   node.setSmartSleep(false);
-  // Enable ACK (to get ATC)
+  // Enable ACK (to get ATC?)
   node.setAck(true);
 
   // Setup regular messaging from Door sensor even if status constants
