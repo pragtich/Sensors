@@ -396,17 +396,17 @@ void DoorLoop(Sensor *sensor) {
 void DoorSetup(Sensor* sensor){
   sensor->setReportIntervalSeconds(DOOR_SECONDS);
 }
-
+/*
 void DoorInterrupt(Sensor* sensor){
   Child* child = sensor->children.get(1);
   #if FEATURE_DEBUG == ON
     Serial.println(F("Sending door value"));
   #endif
-  child->sendValue();
+    //  child->sendValue();
   // Reset report timer
-  sensor->setReportIntervalSeconds(DOOR_SECONDS);
+  //sensor->setReportIntervalSeconds(DOOR_SECONDS);
 }
-
+*/
 // before
 void before() {
   // setup the serial port baud rate
@@ -443,7 +443,7 @@ void before() {
   // Setup regular messaging from Door sensor even if status constants
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
-  door.setInterruptHook(DoorInterrupt);
+  //  door.setInterruptHook(DoorInterrupt);
   /*
   * Configure your sensors above
   */
