@@ -135,7 +135,6 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
 #define MY_RFM69_FREQUENCY RFM69_868MHZ
 #define MY_IS_RFM69HW
 #define MY_RFM69_NEW_DRIVER
-
 //#define MY_RFM69_ATC_TARGET_RSSI_DBM (-70)  // target RSSI -70dBm
 //#define MY_RFM69_MAX_POWER_LEVEL_DBM (10)   // max. TX power 10dBm = 10mW
 
