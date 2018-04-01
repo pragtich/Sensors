@@ -439,6 +439,9 @@ void before() {
   // Setup regular messaging from Door sensor even if status constants
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
+
+  signal.setReportIntervalMinutes(60);
+  
   //  door.setInterruptHook(DoorInterrupt);
   /*
   * Configure your sensors above
