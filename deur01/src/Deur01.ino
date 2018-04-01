@@ -117,7 +117,9 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
 // General settings
 #define SKETCH_NAME "Deur01"
 #define SKETCH_VERSION "1.0"
-//#define MY_DEBUG
+#define MY_DEBUG
+#define MY_DEBUG_VERBOSE_RFM69
+#define FEATURE_DEBUG ON
 //#define MY_NODE_ID 99
 
 // NRF24 radio settings
@@ -139,7 +141,6 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
 
 //#define MY_RFM69_ENABLE_ENCRYPTION
 //#define MY_RFM69_NETWORKID 100
-//#define MY_DEBUG_VERBOSE_RFM69
 //#define MY_RF69_IRQ_PIN D1
 //#define MY_RF69_IRQ_NUM MY_RF69_IRQ_PIN
 //#define MY_RF69_SPI_CS D2
@@ -284,13 +285,12 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
  */
 
 // Enable/disable NodeManager's features
-#define FEATURE_DEBUG OFF
 #define FEATURE_POWER_MANAGER OFF
 #define FEATURE_INTERRUPTS ON
 #define FEATURE_CONDITIONAL_REPORT OFF
 #define FEATURE_EEPROM OFF
 #define FEATURE_SLEEP ON
-#define FEATURE_RECEIVE ON
+#define FEATURE_RECEIVE OFF
 #define FEATURE_TIME OFF
 #define FEATURE_RTC OFF
 #define FEATURE_SD OFF
