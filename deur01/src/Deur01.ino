@@ -116,7 +116,7 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
 
 // General settings
 #define SKETCH_NAME "Deur01"
-#define SKETCH_VERSION "1.0"
+#define SKETCH_VERSION "1.1"
 #define MY_DEBUG
 #define MY_DEBUG_VERBOSE_RFM69
 #define FEATURE_DEBUG ON
@@ -180,7 +180,7 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
 //#define MY_SMART_SLEEP_WAIT_DURATION_MS 500
 #define MY_SPLASH_SCREEN_DISABLED
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
-#define MY_SIGNAL_REPORT_ENABLED
+//#define MY_SIGNAL_REPORT_ENABLED
 
 // Optimizations when running on 2032 Coin Cell. Also set node.setSleepBetweenSend(500) and run the board at 1Mhz
 //#define MY_TRANSPORT_UPLINK_CHECK_DISABLED
@@ -240,8 +240,8 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
  * NodeManager modules for supported sensors
  */
 
-#define USE_BATTERY
-#define USE_SIGNAL
+//#define USE_BATTERY
+//#define USE_SIGNAL
 //#define USE_ANALOG_INPUT
 //#define USE_THERMISTOR
 //#define USE_ML8511
@@ -307,9 +307,9 @@ NodeManager node;
  */
 
 // built-in sensors
-SensorBattery battery(node);
+//SensorBattery battery(node);
 //SensorConfiguration configuration(node);
-SensorSignal signal(node);
+//SensorSignal signal(node);
 //PowerManager power(5,6);
 
 // Attached sensors
@@ -434,14 +434,16 @@ void before() {
   node.setSmartSleep(false);
   // Enable ACK (to get ATC?)
   node.setAck(true);
-
+  // Pause between messages
+  //  node.setSleepBetweenSend(500);
   // Setup regular messaging from Door sensor even if status constants
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
 
-  signal.setReportIntervalMinutes(60);
+  //  signal.setReportIntervalMinutes(60);
   
   //  door.setInterruptHook(DoorInterrupt);
+  
   /*
   * Configure your sensors above
   */
