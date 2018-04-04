@@ -289,7 +289,7 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
 #define FEATURE_CONDITIONAL_REPORT OFF
 #define FEATURE_EEPROM OFF
 #define FEATURE_SLEEP ON
-#define FEATURE_RECEIVE OFF
+#define FEATURE_RECEIVE ON
 #define FEATURE_TIME OFF
 #define FEATURE_RTC OFF
 #define FEATURE_SD OFF
@@ -433,7 +433,7 @@ void before() {
   // Disable smartSleep (messages that I am not using)
   node.setSmartSleep(false);
   // Enable ACK (to get ATC?)
-  node.setAck(true);
+  //node.setAck(true);
   // Pause between messages
   //  node.setSleepBetweenSend(500);
   // Setup regular messaging from Door sensor even if status constants
