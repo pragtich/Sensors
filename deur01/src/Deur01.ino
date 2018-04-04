@@ -440,7 +440,8 @@ void before() {
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
 
-  //  signal.setReportIntervalMinutes(60);
+  //signal.setReportIntervalMinutes(60);
+  //signal.setReportIntervalSeconds(20);
   
   //  door.setInterruptHook(DoorInterrupt);
   
