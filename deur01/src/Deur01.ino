@@ -240,7 +240,7 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
  * NodeManager modules for supported sensors
  */
 
-//#define USE_BATTERY
+#define USE_BATTERY
 //#define USE_SIGNAL
 //#define USE_ANALOG_INPUT
 //#define USE_THERMISTOR
@@ -307,7 +307,7 @@ NodeManager node;
  */
 
 // built-in sensors
-//SensorBattery battery(node);
+SensorBattery battery(node);
 //SensorConfiguration configuration(node);
 //SensorSignal signal(node);
 //PowerManager power(5,6);
