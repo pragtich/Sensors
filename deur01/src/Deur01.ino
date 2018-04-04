@@ -117,9 +117,9 @@ FEATURE_HOOKING             | OFF     | allow custom code to be hooked in the ou
 // General settings
 #define SKETCH_NAME "Deur01"
 #define SKETCH_VERSION "1.1"
-#define MY_DEBUG
-#define MY_DEBUG_VERBOSE_RFM69
-#define FEATURE_DEBUG ON
+//#define MY_DEBUG
+//#define MY_DEBUG_VERBOSE_RFM69
+#define FEATURE_DEBUG OFF
 //#define MY_NODE_ID 99
 
 // NRF24 radio settings
