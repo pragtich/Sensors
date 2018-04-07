@@ -282,6 +282,7 @@ SensorDoor door(node,3);
 bool DoorWokeMeUp = false;
 
 void DoorLoop(Sensor *sensor) {
+  // If I was woken up by an interrupt, avoid sampling twice
   if (DoorWokeMeUp){
     DoorWokeMeUp = false;
     return;
@@ -322,6 +323,7 @@ void DoorInterrupt(Sensor* sensor){
   // Reset report timer
   //sensor->setReportIntervalSeconds(DOOR_SECONDS);
   */
+  // Let the DoorLoop know, that it does not need to run
   DoorWokeMeUp = true;
 }
 
