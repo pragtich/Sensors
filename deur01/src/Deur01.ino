@@ -279,41 +279,52 @@ SensorDoor door(node,3);
 
 #define DOOR_SECONDS (60)
 
+bool DoorWokeMeUp = false;
+
 void DoorLoop(Sensor *sensor) {
-  // read the value
-
-  int value = digitalRead(sensor->getPin());
-
-  Child* child = sensor->children.get(1);
-  #if FEATURE_DEBUG == ON
+  if (DoorWokeMeUp){
+    DoorWokeMeUp = false;
+    return;
+  }
+  else {
+    DoorWokeMeUp = false;
+    // read the value
+    
+    int value = digitalRead(sensor->getPin());
+    
+    Child* child = sensor->children.get(1);
+#if FEATURE_DEBUG == ON
     Serial.println(F("DoorLoop"));
     Serial.print(sensor->getName());
     Serial.print(F(" I="));
-    Serial.print(child->child_id);
+    Serial.print(child->getChildId());
     Serial.print(F(" P="));
     Serial.print(sensor->getPin());
     Serial.print(F(" V="));
     Serial.println(value);
-  #endif
-  // store the value
-  ((ChildInt*)child)->setValueInt(value);
+#endif
+    // store the value
+    ((ChildInt*)child)->setValueInt(value);
+  }
 }
 
 
 void DoorSetup(Sensor* sensor){
   sensor->setReportIntervalSeconds(DOOR_SECONDS);
 }
-/*
+
 void DoorInterrupt(Sensor* sensor){
-  Child* child = sensor->children.get(1);
+  /*  Child* child = sensor->children.get(1);
   #if FEATURE_DEBUG == ON
     Serial.println(F("Sending door value"));
   #endif
     //  child->sendValue();
   // Reset report timer
   //sensor->setReportIntervalSeconds(DOOR_SECONDS);
+  */
+  DoorWokeMeUp = true;
 }
-*/
+
 // before
 void before() {
   // setup the serial port baud rate
@@ -351,6 +362,7 @@ void before() {
   // Setup regular messaging from Door sensor even if status constants
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
+  door.setInterruptHook(DoorInterrupt);
 
   signal.setReportIntervalMinutes(60);
   //signal.setReportIntervalSeconds(20);
