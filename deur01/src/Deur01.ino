@@ -325,11 +325,11 @@ void before() {
   * Configure your sensors below
   */
   // report measures of every attached sensors every 10 seconds
-  node.setReportIntervalSeconds(60);
+  node.setReportIntervalSeconds(DOOR_SECONDS);
   // report measures of every attached sensors every 10 minutes
   //node.setReportIntervalMinutes(10);
   // set the node to sleep in 5 minutes cycles
-  node.setSleepSeconds(20);
+  node.setSleepSeconds(DOOR_SECONDS);
   // report battery level every 10 minutes
   //battery.setReportIntervalMinutes(10);
   // set an offset to -1 to a thermistor sensor
@@ -352,8 +352,8 @@ void before() {
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
 
-  //signal.setReportIntervalMinutes(60);
-  signal.setReportIntervalSeconds(20);
+  signal.setReportIntervalMinutes(60);
+  //signal.setReportIntervalSeconds(20);
   
   //  door.setInterruptHook(DoorInterrupt);
   
