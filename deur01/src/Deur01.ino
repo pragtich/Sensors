@@ -315,14 +315,6 @@ void DoorSetup(Sensor* sensor){
 }
 
 void DoorInterrupt(Sensor* sensor){
-  /*  Child* child = sensor->children.get(1);
-  #if FEATURE_DEBUG == ON
-    Serial.println(F("Sending door value"));
-  #endif
-    //  child->sendValue();
-  // Reset report timer
-  //sensor->setReportIntervalSeconds(DOOR_SECONDS);
-  */
   // Let the DoorLoop know, that it does not need to run
   DoorWokeMeUp = true;
 }
