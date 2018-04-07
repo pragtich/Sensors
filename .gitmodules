@@ -7,3 +7,7 @@
 [submodule "MySensors"]
 	path = MySensors
 	url = https://github.com/mysensors/MySensors.git
+[submodule "NodeManager"]
+	path = NodeManager
+	url = git@github.com:pragtich/NodeManager.git
+	branch = development
