@@ -294,7 +294,8 @@ void DoorLoop(Sensor *sensor) {
     // read the value
     
     int value = digitalRead(sensor->getPin());
-    
+    if (_invert_value_to_report) value = !value;
+
     Child* child = sensor->children.get(1);
 #if FEATURE_DEBUG == ON
     Serial.println(F("DoorLoop"));
