@@ -294,7 +294,9 @@ void DoorLoop(Sensor *sensor) {
     // read the value
     
     int value = digitalRead(sensor->getPin());
-    if (_invert_value_to_report) value = !value;
+    // Does not work because the variable is protected
+    // if (sensor->_invert_value_to_report) value = !value;
+    value = !value;
 
     Child* child = sensor->children.get(1);
 #if FEATURE_DEBUG == ON
