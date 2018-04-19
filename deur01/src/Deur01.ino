@@ -224,6 +224,7 @@ NodeManager node;
 SensorBattery battery(node);
 //SensorConfiguration configuration(node);
 SensorSignal signal(node);
+SensorSignal signaltx(node, 300);
 //PowerManager power(5,6);
 
 // Attached sensors
@@ -366,6 +367,11 @@ void before() {
   door.setInterruptHook(DoorInterrupt);
 
   signal.setReportIntervalMinutes(60);
+  
+  signaltx.setReportIntervalMinutes(5);
+  signaltx.setSignalCommand(SR_TX_POWER_LEVEL);
+  signaltx.getChild(0)->setDescription("TX level");
+  
   //signal.setReportIntervalSeconds(20);
   
   //  door.setInterruptHook(DoorInterrupt);
