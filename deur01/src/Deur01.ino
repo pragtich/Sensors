@@ -366,7 +366,7 @@ void before() {
   door.setPreLoopHook(DoorLoop);
   door.setInterruptHook(DoorInterrupt);
 
-  signal.setReportIntervalMinutes(60);
+  signal.setReportIntervalMinutes(5);
   
   signaltx.setReportIntervalMinutes(5);
   signaltx.setSignalCommand(SR_TX_POWER_LEVEL);
