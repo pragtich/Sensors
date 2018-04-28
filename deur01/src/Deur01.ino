@@ -25,11 +25,11 @@
 
 // General settings
 #define SKETCH_NAME "Deur01"
-#define SKETCH_VERSION "1.1"
+#define SKETCH_VERSION "1.2"
 
-				  //#define MY_DEBUG
-				  //#define MY_DEBUG_VERBOSE_RFM69
-				  //#define FEATURE_DEBUG ON
+//#define MY_DEBUG
+//#define MY_DEBUG_VERBOSE_RFM69
+//#define FEATURE_DEBUG ON
 				  
 #ifndef FEATURE_DEBUG
   #define FEATURE_DEBUG OFF
@@ -280,7 +280,7 @@ SensorDoor door(node,3);
  * Main Sketch
  */
 
-#define DOOR_SECONDS (60)
+#define DOOR_SECONDS (300)
 
 bool DoorWokeMeUp = false;
 
@@ -366,15 +366,10 @@ void before() {
   door.setPreLoopHook(DoorLoop);
   door.setInterruptHook(DoorInterrupt);
 
-  signal.setReportIntervalMinutes(5);
-  
-  signaltx.setReportIntervalMinutes(5);
+  signal.setReportIntervalMinutes(60);
+  signaltx.setReportIntervalMinutes(60);
   signaltx.setSignalCommand(SR_TX_POWER_LEVEL);
   signaltx.getChild(0)->setDescription("TX level");
-  
-  //signal.setReportIntervalSeconds(20);
-  
-  //  door.setInterruptHook(DoorInterrupt);
   
   /*
   * Configure your sensors above
