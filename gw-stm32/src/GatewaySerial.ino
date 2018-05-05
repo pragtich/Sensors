@@ -48,6 +48,9 @@
 #define MY_IS_RFM69HW
 #define MY_RFM69_NEW_DRIVER
 #define MY_DEBUG_VERBOSE_RFM69
+#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
+
+#define MY_RFM69_IRQ_PIN (PA11)
 //#define MY_RADIO_RFM95
 
 // Set LOW transmit power level as default, if you have an amplified NRF-module and
