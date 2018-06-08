@@ -25,7 +25,7 @@
 
 // General settings
 #define SKETCH_NAME "Deur01"
-#define SKETCH_VERSION "1.2"
+#define SKETCH_VERSION "1.3"
 
 //#define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_RFM69
@@ -49,8 +49,8 @@
 #define MY_RFM69_FREQUENCY RFM69_868MHZ
 #define MY_IS_RFM69HW
 #define MY_RFM69_NEW_DRIVER
-//#define MY_RFM69_ATC_TARGET_RSSI_DBM (-70)  // target RSSI -70dBm
-//#define MY_RFM69_MAX_POWER_LEVEL_DBM (10)   // max. TX power 10dBm = 10mW
+#define MY_RFM69_ATC_TARGET_RSSI_DBM (-70)  // target RSSI -70dBm
+#define MY_RFM69_MAX_POWER_LEVEL_DBM (20)   // max. TX power 10dBm = 10mW
 
 //#define MY_RFM69_ENABLE_ENCRYPTION
 //#define MY_RFM69_NETWORKID 100
@@ -335,7 +335,7 @@ void before() {
   /*
   * Configure your sensors below
   */
-  // report measures of every attached sensors every 10 seconds
+  // Report measures of every attached sensors every 10 seconds
   node.setReportIntervalSeconds(DOOR_SECONDS);
   // report measures of every attached sensors every 10 minutes
   //node.setReportIntervalMinutes(10);
@@ -354,7 +354,7 @@ void before() {
   //
 
   // Disable smartSleep (messages that I am not using)
-  node.setSmartSleep(false);
+  //node.setSmartSleep(false);
   // Enable ACK (to get ATC?)
   //node.setAck(true);
   // Pause between messages
