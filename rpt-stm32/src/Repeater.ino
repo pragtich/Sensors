@@ -36,6 +36,10 @@
 *
 */
 
+// Repeater is not getting an automatic node ID from controller (TODO: why?)
+#define MY_NODE_ID (1)
+
+
 // Enable debug prints to serial monitor
 #define MY_DEBUG
 #define MY_DEBUG_VERBOSE
