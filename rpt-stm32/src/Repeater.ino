@@ -36,6 +36,9 @@
 *
 */
 
+// This is a repeater node
+#define MY_REPEATER_FEATURE
+
 // Repeater is not getting an automatic node ID from controller (TODO: why?)
 #define MY_NODE_ID (1)
 
@@ -53,6 +56,10 @@
 #define MY_RFM69_NEW_DRIVER
 #define MY_DEBUG_VERBOSE_RFM69
 #define MY_DEBUG_VERBOSE_RFM69_REGISTERS
+
+// I do not want ATC
+#define MY_RFM69_ATC_MODE_DISABLED
+#define MY_RFM69_TX_POWER_DBM   (20)
 
 #define MY_RFM69_IRQ_PIN (PA11)
 
