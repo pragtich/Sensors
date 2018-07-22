@@ -65,19 +65,15 @@
  * Make sure to fill in your ssid and WiFi password below for ssid & pass.
  */
 
+// Load network specific settings
+#include "../../pragtich.h"
+
 // Enable debug prints to serial monitor
 #define MY_DEBUG
 #define MY_DEBUG_VERBOSE
 // Use a bit lower baudrate for serial prints on ESP8266 than default in MyConfig.h
 #define MY_BAUD_RATE 9600
 
-// Enables and select radio type (if attached)
-//#define MY_RADIO_NRF24
-#define MY_RADIO_RFM69
-#define MY_RFM69_FREQUENCY RFM69_868MHZ
-#define MY_IS_RFM69HW
-#define MY_RFM69_NEW_DRIVER
-#define MY_DEBUG_VERBOSE_RFM69
 //#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
 //#define MY_RFM69_MAX_POWER_LEVEL_DBM (1u)
 #define MY_RF69_IRQ_PIN D1
