@@ -36,28 +36,22 @@
 *
 */
 
+#include "../../pragtich.h"
+
 // This is a repeater node
 #define MY_REPEATER_FEATURE
 
 // Repeater is not getting an automatic node ID from controller (TODO: why?)
 #define MY_NODE_ID (1)
 
-
 // Enable debug prints to serial monitor
 #define MY_DEBUG
 #define MY_DEBUG_VERBOSE
 
-// Enable and select radio type attached
-//#define MY_RADIO_NRF24
-//#define MY_RADIO_NRF5_ESB
-#define MY_RADIO_RFM69
-#define MY_RFM69_FREQUENCY RFM69_868MHZ
-#define MY_IS_RFM69HW
-#define MY_RFM69_NEW_DRIVER
 #define MY_DEBUG_VERBOSE_RFM69
-#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
+//#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
 
-// I do not want ATC
+// I do not want ATC for a repeater
 #define MY_RFM69_ATC_MODE_DISABLED
 #define MY_RFM69_TX_POWER_DBM   (20)
 

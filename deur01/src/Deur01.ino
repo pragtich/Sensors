@@ -23,6 +23,8 @@
  * MySensors node configuration
  */
 
+#include "../../pragtich.h"
+
 // General settings
 #define SKETCH_NAME "Deur01"
 #define SKETCH_VERSION "1.3"
@@ -35,45 +37,6 @@
   #define FEATURE_DEBUG OFF
 #endif
 //#define MY_NODE_ID 99
-
-// NRF24 radio settings
-//#define MY_RADIO_NRF24
-//#define MY_RF24_ENABLE_ENCRYPTION
-//#define MY_RF24_CHANNEL 125
-//#define MY_RF24_PA_LEVEL RF24_PA_HIGH
-//#define MY_DEBUG_VERBOSE_RF24
-//#define MY_RF24_DATARATE RF24_250KBPS
-
-// RFM69 radio settings
-#define MY_RADIO_RFM69
-#define MY_RFM69_FREQUENCY RFM69_868MHZ
-#define MY_IS_RFM69HW
-#define MY_RFM69_NEW_DRIVER
-#define MY_RFM69_ATC_TARGET_RSSI_DBM (-70)  // target RSSI -70dBm
-#define MY_RFM69_MAX_POWER_LEVEL_DBM (20)   // max. TX power 10dBm = 10mW
-
-//#define MY_RFM69_ENABLE_ENCRYPTION
-//#define MY_RFM69_NETWORKID 100
-//#define MY_RF69_IRQ_PIN D1
-//#define MY_RF69_IRQ_NUM MY_RF69_IRQ_PIN
-//#define MY_RF69_SPI_CS D2
-//#define MY_RFM69_ATC_MODE_DISABLED
-
-// RFM95 radio settings
-//#define MY_RADIO_RFM95
-//#define MY_RFM95_FREQUENCY (RFM95_868MHZ)
-//#define MY_DEBUG_VERBOSE_RFM95
-//#define MY_RFM95_MAX_POWER_LEVEL_DBM (20)
-//#define MY_RFM95_IRQ_PIN D1
-//#define MY_RFM95_IRQ_NUM MY_RFM95_IRQ_PIN
-//#define MY_RFM95_CS_PIN D8
-
-// RS485 serial transport settings
-//#define MY_RS485
-//#define MY_RS485_BAUD_RATE 9600
-//#define MY_RS485_DE_PIN 2
-//#define MY_RS485_MAX_MESSAGE_LENGTH 40
-//#define MY_RS485_HWSERIAL Serial1
 
 // Message signing settings
 //#define MY_SIGNING_SOFT
@@ -92,7 +55,6 @@
 // Advanced settings
 #define MY_BAUD_RATE 9600
 //#define MY_SMART_SLEEP_WAIT_DURATION_MS 500
-#define MY_SPLASH_SCREEN_DISABLED
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
 //#define MY_SIGNAL_REPORT_ENABLED
 
@@ -355,8 +317,9 @@ void before() {
 
   // Disable smartSleep (messages that I am not using)
   //node.setSmartSleep(false);
-  // Enable ACK (to get ATC?)
-  //node.setAck(true);
+  // Disable soft ack (is useless anyway, and causes issue)
+  // This is the default, do this to be sure
+node.setAck(false);
   // Pause between messages
   //  node.setSleepBetweenSend(500);
   // Invert value (zero is unlocked). This should reduce power consumption through the pull-up
