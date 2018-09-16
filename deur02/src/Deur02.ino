@@ -323,7 +323,7 @@ node.setAck(false);
   // Pause between messages
   //  node.setSleepBetweenSend(500);
   // Invert value (zero is unlocked). This should reduce power consumption through the pull-up
-  door.setInvertValueToReport(true);
+ door.setInvertValueToReport(false);
   // Setup regular messaging from Door sensor even if status constants
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
