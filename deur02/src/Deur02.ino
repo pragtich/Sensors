@@ -29,15 +29,18 @@
 #define SKETCH_NAME "Deur02"
 #define SKETCH_VERSION "1.0"
 
-//#define MY_DEBUG
+#define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_RFM69
-//#define FEATURE_DEBUG ON
+#define FEATURE_DEBUG ON
 				  
 #ifndef FEATURE_DEBUG
   #define FEATURE_DEBUG OFF
 #endif
 //#define MY_NODE_ID 99
 
+#define USE_I2C_EEPROM
+#define MY_OTA_FIRMWARE_FEATURE
+#define MY_OTA_USE_I2C_EEPROM 
 // Message signing settings
 //#define MY_SIGNING_SOFT
 //#define MY_SIGNING_SOFT_RANDOMSEED_PIN 7
@@ -116,8 +119,8 @@
  * NodeManager modules for supported sensors
  */
 
-#define USE_BATTERY
-#define USE_SIGNAL
+//#define USE_BATTERY
+//#define USE_SIGNAL
 //#define USE_ANALOG_INPUT
 //#define USE_THERMISTOR
 //#define USE_ML8511
@@ -183,10 +186,10 @@ NodeManager node;
  */
 
 // built-in sensors
-SensorBattery battery(node);
+//SensorBattery battery(node);
 //SensorConfiguration configuration(node);
-SensorSignal signal(node);
-SensorSignal signaltx(node, 300);
+//SensorSignal signal(node);
+//SensorSignal signaltx(node, 300);
 //PowerManager power(5,6);
 
 // Attached sensors
@@ -241,8 +244,9 @@ SensorDoor door(node,3);
 /***********************************
  * Main Sketch
  */
-
 #define DOOR_SECONDS (300)
+#if false
+
 
 bool DoorWokeMeUp = false;
 
@@ -286,7 +290,7 @@ void DoorInterrupt(Sensor* sensor){
   // Let the DoorLoop know, that it does not need to run
   DoorWokeMeUp = true;
 }
-
+#endif
 // before
 void before() {
   // setup the serial port baud rate
@@ -319,12 +323,13 @@ void before() {
   //node.setSmartSleep(false);
   // Disable soft ack (is useless anyway, and causes issue)
   // This is the default, do this to be sure
-node.setAck(false);
+  node.setAck(false);
   // Pause between messages
   //  node.setSleepBetweenSend(500);
   // Invert value (zero is unlocked). This should reduce power consumption through the pull-up
- door.setInvertValueToReport(false);
+  door.setInvertValueToReport(false);
   // Setup regular messaging from Door sensor even if status constants
+#if false
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
   door.setInterruptHook(DoorInterrupt);
@@ -333,7 +338,7 @@ node.setAck(false);
   signaltx.setReportIntervalMinutes(60);
   signaltx.setSignalCommand(SR_TX_POWER_LEVEL);
   signaltx.getChild(0)->setDescription("TX level");
-  
+#endif  
   /*
   * Configure your sensors above
   */
