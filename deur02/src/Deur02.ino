@@ -29,9 +29,9 @@
 #define SKETCH_NAME "Deur02"
 #define SKETCH_VERSION "1.0"
 
-#define MY_DEBUG
+//#define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_RFM69
-#define FEATURE_DEBUG ON
+//#define FEATURE_DEBUG ON
 				  
 #ifndef FEATURE_DEBUG
   #define FEATURE_DEBUG OFF
