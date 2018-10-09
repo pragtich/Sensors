@@ -119,8 +119,8 @@
  * NodeManager modules for supported sensors
  */
 
-#define USE_BATTERY
-#define USE_SIGNAL
+//#define USE_BATTERY
+//#define USE_SIGNAL
 //#define USE_ANALOG_INPUT
 //#define USE_THERMISTOR
 //#define USE_ML8511
@@ -186,10 +186,10 @@ NodeManager node;
  */
 
 // built-in sensors
-SensorBattery battery(node);
+//SensorBattery battery(node);
 //SensorConfiguration configuration(node);
-SensorSignal signal(node);
-SensorSignal signaltx(node, 300);
+//SensorSignal signal(node);
+//SensorSignal signaltx(node, 300);
 //PowerManager power(5,6);
 
 // Attached sensors
@@ -245,7 +245,7 @@ SensorDoor door(node,3);
  * Main Sketch
  */
 #define DOOR_SECONDS (300)
-
+#if false
 bool DoorWokeMeUp = false;
 
 void DoorLoop(Sensor *sensor) {
@@ -288,7 +288,7 @@ void DoorInterrupt(Sensor* sensor){
   // Let the DoorLoop know, that it does not need to run
   DoorWokeMeUp = true;
 }
-
+#endif
 // before
 void before() {
   // setup the serial port baud rate
@@ -306,7 +306,7 @@ void before() {
   // set the node to sleep in 5 minutes cycles
   node.setSleepSeconds(DOOR_SECONDS);
   // report battery level every 120 minutes
-  battery.setReportIntervalMinutes(120);
+  //  battery.setReportIntervalMinutes(120);
   // set an offset to -1 to a thermistor sensor
   //thermistor.setOffset(-1);
   // change the id of a the first child of a sht21 sensor
@@ -328,15 +328,15 @@ void before() {
   door.setInvertValueToReport(false);
   // Setup regular messaging from Door sensor even if status constants
 
-  door.setSetupHook(DoorSetup);
+  /*  door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
   door.setInterruptHook(DoorInterrupt);
-
-  signal.setReportIntervalMinutes(60);
+  */
+  /*  signal.setReportIntervalMinutes(60);
   signaltx.setReportIntervalMinutes(60);
   signaltx.setSignalCommand(SR_TX_POWER_LEVEL);
   signaltx.getChild(0)->setDescription("TX level");
-
+  */
   /*
   * Configure your sensors above
   */
