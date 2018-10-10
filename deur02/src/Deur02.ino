@@ -29,7 +29,8 @@
 #define SKETCH_NAME "Deur02"
 #define SKETCH_VERSION "1.0"
 
-//#define MY_DEBUG
+#define MY_DEBUG
+#define MY_DEBUG_VERBOSE_OTA_UPDATE
 //#define MY_DEBUG_VERBOSE_RFM69
 //#define FEATURE_DEBUG ON
 				  
