@@ -29,8 +29,8 @@
 #define SKETCH_NAME "Deur02"
 #define SKETCH_VERSION "1.0"
 
-#define MY_DEBUG
-#define MY_DEBUG_VERBOSE_OTA_UPDATE
+//#define MY_DEBUG
+//#define MY_DEBUG_VERBOSE_OTA_UPDATE
 //#define MY_DEBUG_VERBOSE_RFM69
 //#define FEATURE_DEBUG ON
 				  
@@ -58,7 +58,7 @@
 
 // Advanced settings
 #define MY_BAUD_RATE 9600
-#define MY_SMART_SLEEP_WAIT_DURATION_MS 2500
+//#define MY_SMART_SLEEP_WAIT_DURATION_MS 2500
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
 //#define MY_SIGNAL_REPORT_ENABLED
 
@@ -246,7 +246,6 @@ SensorDoor door(node,3);
  * Main Sketch
  */
 #define DOOR_SECONDS (300)
-#if false
 bool DoorWokeMeUp = false;
 
 void DoorLoop(Sensor *sensor) {
@@ -289,13 +288,11 @@ void DoorInterrupt(Sensor* sensor){
   // Let the DoorLoop know, that it does not need to run
   DoorWokeMeUp = true;
 }
-#endif
+
 // before
 void before() {
   // setup the serial port baud rate
   Serial.begin(MY_BAUD_RATE);
-  
-  
   
   /*
   * Configure your sensors below
@@ -329,10 +326,10 @@ void before() {
   door.setInvertValueToReport(false);
   // Setup regular messaging from Door sensor even if status constants
 
-  /*  door.setSetupHook(DoorSetup);
+  door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
   door.setInterruptHook(DoorInterrupt);
-  */
+ 
   /*  signal.setReportIntervalMinutes(60);
   signaltx.setReportIntervalMinutes(60);
   signaltx.setSignalCommand(SR_TX_POWER_LEVEL);
