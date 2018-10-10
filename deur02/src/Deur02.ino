@@ -12,7 +12,7 @@
  * Documentation: http://www.mysensors.org
  * Support Forum: http://forum.mysensors.org
  *
- * This program is free software; you can redistribute it and/or
+1 * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * version 2 as published by the Free Software Foundation.
  *
@@ -358,6 +358,10 @@ void setup() {
 
 // loop
 void loop() {
+#ifdef MY_DEBUG_VERBOSE_OTA_UPDATE
+  OTA_DEBUG(PSTR("~"));
+#endif
+
   // call NodeManager loop routine
   node.loop();
 }
