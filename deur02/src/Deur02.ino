@@ -27,7 +27,7 @@
 
 // General settings
 #define SKETCH_NAME "Deur02"
-#define SKETCH_VERSION "1.0"
+#define SKETCH_VERSION "1.01"
 
 //#define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_OTA_UPDATE
@@ -42,6 +42,8 @@
 #define USE_I2C_EEPROM
 #define MY_OTA_FIRMWARE_FEATURE
 #define MY_OTA_USE_I2C_EEPROM 
+//#define MY_OTA_RETRY (5)
+//#define MY_OTA_RETRY_DELAY
 // Message signing settings
 //#define MY_SIGNING_SOFT
 //#define MY_SIGNING_SOFT_RANDOMSEED_PIN 7
