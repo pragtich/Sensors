@@ -27,7 +27,7 @@
 
 // General settings
 #define SKETCH_NAME "Deur02"
-#define SKETCH_VERSION "1.01"
+#define SKETCH_VERSION "1.03"
 
 //#define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_OTA_UPDATE
@@ -62,7 +62,7 @@
 #define MY_BAUD_RATE 9600
 //#define MY_SMART_SLEEP_WAIT_DURATION_MS 2500
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
-//#define MY_SIGNAL_REPORT_ENABLED
+#define MY_SIGNAL_REPORT_ENABLED
 
 // Optimizations when running on 2032 Coin Cell. Also set node.setSleepBetweenSend(500) and run the board at 1Mhz
 //#define MY_TRANSPORT_UPLINK_CHECK_DISABLED
