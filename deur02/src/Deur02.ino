@@ -27,11 +27,11 @@
 
 // General settings
 #define SKETCH_NAME "Deur02"
-#define SKETCH_VERSION "1.03"
+#define SKETCH_VERSION "1.05"
 
-//#define MY_DEBUG
+#define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_OTA_UPDATE
-//#define MY_DEBUG_VERBOSE_RFM69
+#define MY_DEBUG_VERBOSE_RFM69
 //#define FEATURE_DEBUG ON
 				  
 #ifndef FEATURE_DEBUG
@@ -60,7 +60,7 @@
 
 // Advanced settings
 #define MY_BAUD_RATE 9600
-//#define MY_SMART_SLEEP_WAIT_DURATION_MS 2500
+#define MY_SMART_SLEEP_WAIT_DURATION_MS 2500
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
 #define MY_SIGNAL_REPORT_ENABLED
 
