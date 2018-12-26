@@ -29,13 +29,10 @@
 #define SKETCH_NAME "Deur01"
 #define SKETCH_VERSION "1.4"
 
-//#define MY_DEBUG
-//#define MY_DEBUG_VERBOSE_RFM69
-//#define FEATURE_DEBUG ON
+#define MY_DEBUG
+#define MY_DEBUG_VERBOSE_RFM69
+#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
 				  
-#ifndef FEATURE_DEBUG
-  #define FEATURE_DEBUG OFF
-#endif
 //#define MY_NODE_ID 99
 
 // Message signing settings
@@ -56,7 +53,7 @@
 #define MY_BAUD_RATE 9600
 #define MY_SPLASH_SCREEN_DISABLED
 
-//#define MY_SMART_SLEEP_WAIT_DURATION_MS 500
+#define MY_SMART_SLEEP_WAIT_DURATION_MS 2000
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
 //#define MY_SIGNAL_REPORT_ENABLED
 
@@ -206,64 +203,14 @@ SensorBattery battery;
 #include <sensors/SensorSignal.h>
 SensorSignal signal;
 SensorSignal signaltx(300);
-//PowerManager power(5,6);
-
-// Attached sensors
-//SensorAnalogInput analog(node,A0);
-//SensorLDR ldr(node,A0);
-//SensorRain rain(node,A0);
-//SensorSoilMoisture soil(node,A0);
-//SensorThermistor thermistor(node,A0);
-//SensorML8511 ml8511(node,A0);
-//SensorACS712 acs712(node,A0);
-//SensorDigitalInput digitalIn(node,6);
-//SensorDigitalOutput digitalOut(node,6);
-//SensorRelay relay(node,6);
-//SensorLatchingRelay latching(node,6);
-//SensorDHT11 dht11(node,6);
-//SensorDHT22 dht22(node,6);
-//SensorSHT21 sht21(node);
-//SensorHTU21D htu21(node);
-//SensorInterrupt interrupt(node,3);
 #include <sensors/SensorDoor.h>
 SensorDoor door(3);
-//SensorDoor door(node,3);
-//SensorMotion motion(node,3);
-//SensorDs18b20 ds18b20(node,6);
-//SensorBH1750 bh1750(node);
-//SensorMLX90614 mlx90614(node);
-//SensorBME280 bme280(node);
-//SensorBMP085 bmp085(node);
-//SensorBMP280 bmp280(node);
-//SensorSonoff sonoff(node);
-//SensorHCSR04 hcsr04(node,6);
-//SensorMCP9808 mcp9808(node);
-//SensorMQ mq(node,A0);
-//SensorMHZ19 mhz19(node,6,7);
-//SensorAM2320 am2320(node);
-//SensorTSL2561 tsl2561(node);
-//SensorPT100 pt100(node,6);
-//SensorDimmer dimmer(node,3);
-//SensorRainGauge rainGauge(node,3);
-//SensorPowerMeter powerMeter(node,3);
-//SensorWaterMeter waterMeter(node,3);
-//SensorPlantowerPMS pms(node,6,7);
-//SensorVL53L0X vl53l0x(node,3);
-//DisplaySSD1306 ssd1306(node);
-//SensorSHT31 sht31(node);
-//SensorSI7021 si7021(node);
-//SensorChirp chirp(node);
-//DisplayHD44780 hd44780(node);
-//SensorTTP ttp(node);
-//SensorServo servo(node,6);
-//SensorAPDS9960 apds9960(node,3);
-//SensorNeopixel neopixel(node,6);
 
 /***********************************
  * Main Sketch
  */
 
-#define DOOR_SECONDS (300)
+#define DOOR_SECONDS (20)
 
 bool DoorWokeMeUp = false;
 
@@ -340,7 +287,7 @@ void before() {
   //node.setSmartSleep(false);
   // Disable soft ack (is useless anyway, and causes issue)
   // This is the default, do this to be sure
-  nodeManager.setAck(false);
+  //nodeManager.setAck(false);
   // Pause between messages
   //  node.setSleepBetweenSend(500);
   // Invert value (zero is unlocked). This should reduce power consumption through the pull-up

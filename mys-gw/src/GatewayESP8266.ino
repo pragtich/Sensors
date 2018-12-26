@@ -74,7 +74,7 @@
 // Use a bit lower baudrate for serial prints on ESP8266 than default in MyConfig.h
 #define MY_BAUD_RATE 9600
 
-//#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
+#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
 //#define MY_RFM69_MAX_POWER_LEVEL_DBM (1u)
 #define MY_RF69_IRQ_PIN D1
 #define MY_RF69_IRQ_NUM MY_RF69_IRQ_PIN
