@@ -12,10 +12,11 @@ This file should contain the general network definitions, general to all devices
 #define MY_RADIO_RFM69
 #define MY_RFM69_FREQUENCY RFM69_868MHZ
 #define MY_IS_RFM69HW
-//#define MY_RFM69_NEW_DRIVER
+#define MY_RFM69_NEW_DRIVER
 #define MY_RFM69_ATC_TARGET_RSSI_DBM (-70)  // target RSSI -70dBm
 #define MY_RFM69_MAX_POWER_LEVEL_DBM (20)   // max. TX power 10dBm = 10mW
 
+#define MY_RFM69_CSMA_LIMIT_DBM (-80)       // TX will wait until rx RSSI below this number; default -95
 
 // Other
 #define MY_SPLASH_SCREEN_DISABLED
