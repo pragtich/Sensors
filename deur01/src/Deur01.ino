@@ -27,7 +27,7 @@
 
 // General settings
 #define SKETCH_NAME "Deur01"
-#define SKETCH_VERSION "1.3"
+#define SKETCH_VERSION "1.4"
 
 //#define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_RFM69
@@ -54,6 +54,8 @@
 
 // Advanced settings
 #define MY_BAUD_RATE 9600
+#define MY_SPLASH_SCREEN_DISABLED
+
 //#define MY_SMART_SLEEP_WAIT_DURATION_MS 500
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
 //#define MY_SIGNAL_REPORT_ENABLED
@@ -116,8 +118,8 @@
  * NodeManager modules for supported sensors
  */
 
-#define USE_BATTERY
-#define USE_SIGNAL
+//#define USE_BATTERY
+//#define USE_SIGNAL
 //#define USE_ANALOG_INPUT
 //#define USE_THERMISTOR
 //#define USE_ML8511
@@ -126,7 +128,7 @@
 //#define USE_DIGITAL_OUTPUT
 //#define USE_DHT
 //#define USE_SHT21
-#define USE_INTERRUPT
+//#define USE_INTERRUPT
 //#define USE_DS18B20
 //#define USE_BH1750
 //#define USE_MLX90614
@@ -160,33 +162,50 @@
  */
 
 // Enable/disable NodeManager's features
-#define FEATURE_POWER_MANAGER OFF
-#define FEATURE_INTERRUPTS ON
-#define FEATURE_CONDITIONAL_REPORT OFF
-#define FEATURE_EEPROM OFF
-#define FEATURE_SLEEP ON
-#define FEATURE_RECEIVE ON
-#define FEATURE_TIME OFF
-#define FEATURE_RTC OFF
-#define FEATURE_SD OFF
-#define FEATURE_HOOKING ON
+/* #define FEATURE_POWER_MANAGER OFF */
+/* #define FEATURE_INTERRUPTS ON */
+/* #define FEATURE_CONDITIONAL_REPORT OFF */
+/* #define FEATURE_EEPROM OFF */
+/* #define FEATURE_SLEEP ON */
+/* #define FEATURE_RECEIVE ON */
+/* #define FEATURE_TIME OFF */
+/* #define FEATURE_RTC OFF */
+/* #define FEATURE_SD OFF */
+/* #define FEATURE_HOOKING ON */
+
+#define NODEMANAGER_DEBUG ON
+#define NODEMANAGER_INTERRUPTS ON
+#define NODEMANAGER_SLEEP ON
+#define NODEMANAGER_RECEIVE ON
+#define NODEMANAGER_DEBUG_VERBOSE OFF
+#define NODEMANAGER_POWER_MANAGER OFF
+#define NODEMANAGER_CONDITIONAL_REPORT OFF
+#define NODEMANAGER_EEPROM OFF
+#define NODEMANAGER_TIME OFF
+#define NODEMANAGER_RTC OFF
+#define NODEMANAGER_SD OFF
+#define NODEMANAGER_HOOKING ON
+#define NODEMANAGER_OTA_CONFIGURATION OFF
+#define NODEMANAGER_SERIAL_INPUT OFF
 
 /***********************************
  * Load NodeManager Library
  */
 
-#include "NodeManagerLibrary.h"
-NodeManager node;
+#include <MySensors_NodeManager.h>
 
 /***********************************
  * Add your sensors below
  */
 
-// built-in sensors
-SensorBattery battery(node);
+#include <sensors/SensorBattery.h>
+SensorBattery battery;
+
 //SensorConfiguration configuration(node);
-SensorSignal signal(node);
-SensorSignal signaltx(node, 300);
+
+#include <sensors/SensorSignal.h>
+SensorSignal signal;
+SensorSignal signaltx(300);
 //PowerManager power(5,6);
 
 // Attached sensors
@@ -206,7 +225,9 @@ SensorSignal signaltx(node, 300);
 //SensorSHT21 sht21(node);
 //SensorHTU21D htu21(node);
 //SensorInterrupt interrupt(node,3);
-SensorDoor door(node,3);
+#include <sensors/SensorDoor.h>
+SensorDoor door(3);
+//SensorDoor door(node,3);
 //SensorMotion motion(node,3);
 //SensorDs18b20 ds18b20(node,6);
 //SensorBH1750 bh1750(node);
@@ -256,7 +277,7 @@ void DoorLoop(Sensor *sensor) {
     DoorWokeMeUp = false;
     // read the value
     
-    int value = digitalRead(sensor->getPin());
+    int value = digitalRead(sensor->getInterruptPin());
     // Does not work because the variable is protected
     // if (sensor->_invert_value_to_report) value = !value;
     value = !value;
@@ -273,7 +294,7 @@ void DoorLoop(Sensor *sensor) {
     Serial.println(value);
 #endif
     // store the value
-    ((ChildInt*)child)->setValueInt(value);
+    (child)->setValue(value);
   }
 }
 
@@ -298,11 +319,11 @@ void before() {
   * Configure your sensors below
   */
   // Report measures of every attached sensors every 10 seconds
-  node.setReportIntervalSeconds(DOOR_SECONDS);
+  nodeManager.setReportIntervalSeconds(DOOR_SECONDS);
   // report measures of every attached sensors every 10 minutes
   //node.setReportIntervalMinutes(10);
   // set the node to sleep in 5 minutes cycles
-  node.setSleepSeconds(DOOR_SECONDS);
+  nodeManager.setSleepSeconds(DOOR_SECONDS);
   // report battery level every 10 minutes
   //battery.setReportIntervalMinutes(10);
   // set an offset to -1 to a thermistor sensor
@@ -319,7 +340,7 @@ void before() {
   //node.setSmartSleep(false);
   // Disable soft ack (is useless anyway, and causes issue)
   // This is the default, do this to be sure
-node.setAck(false);
+  nodeManager.setAck(false);
   // Pause between messages
   //  node.setSleepBetweenSend(500);
   // Invert value (zero is unlocked). This should reduce power consumption through the pull-up
@@ -337,39 +358,39 @@ node.setAck(false);
   /*
   * Configure your sensors above
   */
-  node.before();
+  nodeManager.before();
 }
 
 // presentation
 void presentation() {
   // call NodeManager presentation routine
-  node.presentation();
+  nodeManager.presentation();
 }
 
 // setup
 void setup() {
   // call NodeManager setup routine
-  node.setup();
+  nodeManager.setup();
 }
 
 // loop
 void loop() {
   // call NodeManager loop routine
-  node.loop();
+  nodeManager.loop();
 }
 
-#if FEATURE_RECEIVE == ON
+#if NODEMANAGER_RECEIVE == ON
 // receive
 void receive(const MyMessage &message) {
   // call NodeManager receive routine
-  node.receive(message);
+  nodeManager.receive(message);
 }
 #endif
 
-#if FEATURE_TIME == ON
+#if NODEMANAGER_TIME == ON
 // receiveTime
 void receiveTime(unsigned long ts) {
   // call NodeManager receiveTime routine
-  node.receiveTime(ts);
+  nodeManager.receiveTime(ts);
 }
 #endif
