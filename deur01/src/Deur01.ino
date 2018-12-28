@@ -27,12 +27,16 @@
 
 // General settings
 #define SKETCH_NAME "Deur01"
-#define SKETCH_VERSION "1.4"
+#define SKETCH_VERSION "1.45"
 
 #define MY_DEBUG
-#define MY_DEBUG_VERBOSE_RFM69
-#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
-				  
+//#define MY_DEBUG_VERBOSE_RFM69
+//#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
+
+#define USE_I2C_EEPROM
+#define MY_OTA_FIRMWARE_FEATURE
+#define MY_OTA_USE_I2C_EEPROM 
+
 //#define MY_NODE_ID 99
 
 // Message signing settings
@@ -55,7 +59,7 @@
 
 #define MY_SMART_SLEEP_WAIT_DURATION_MS 2000
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
-//#define MY_SIGNAL_REPORT_ENABLED
+#define MY_SIGNAL_REPORT_ENABLED
 
 // Optimizations when running on 2032 Coin Cell. Also set node.setSleepBetweenSend(500) and run the board at 1Mhz
 //#define MY_TRANSPORT_UPLINK_CHECK_DISABLED
@@ -170,20 +174,20 @@
 /* #define FEATURE_SD OFF */
 /* #define FEATURE_HOOKING ON */
 
-#define NODEMANAGER_DEBUG ON
-#define NODEMANAGER_INTERRUPTS ON
-#define NODEMANAGER_SLEEP ON
-#define NODEMANAGER_RECEIVE ON
+#define NODEMANAGER_DEBUG         OFF
+#define NODEMANAGER_INTERRUPTS    ON
+#define NODEMANAGER_SLEEP         ON
+#define NODEMANAGER_RECEIVE       ON
 #define NODEMANAGER_DEBUG_VERBOSE OFF
 #define NODEMANAGER_POWER_MANAGER OFF
 #define NODEMANAGER_CONDITIONAL_REPORT OFF
-#define NODEMANAGER_EEPROM OFF
-#define NODEMANAGER_TIME OFF
-#define NODEMANAGER_RTC OFF
-#define NODEMANAGER_SD OFF
-#define NODEMANAGER_HOOKING ON
+#define NODEMANAGER_EEPROM        OFF
+#define NODEMANAGER_TIME          OFF
+#define NODEMANAGER_RTC           OFF
+#define NODEMANAGER_SD            OFF
+#define NODEMANAGER_HOOKING       ON
 #define NODEMANAGER_OTA_CONFIGURATION OFF
-#define NODEMANAGER_SERIAL_INPUT OFF
+#define NODEMANAGER_SERIAL_INPUT  OFF
 
 /***********************************
  * Load NodeManager Library
