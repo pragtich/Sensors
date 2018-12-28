@@ -27,9 +27,9 @@
 
 // General settings
 #define SKETCH_NAME "Deur01"
-#define SKETCH_VERSION "1.49"
+#define SKETCH_VERSION "1.50"
 
-#define MY_DEBUG
+//#define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_RFM69
 //#define MY_DEBUG_VERBOSE_RFM69_REGISTERS
 
@@ -47,7 +47,7 @@
 #define MY_BAUD_RATE 9600
 #define MY_SPLASH_SCREEN_DISABLED
 
-#define MY_SMART_SLEEP_WAIT_DURATION_MS 2000
+#define MY_SMART_SLEEP_WAIT_DURATION_MS (1000u)
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
 //#define MY_SIGNAL_REPORT_ENABLED
 
@@ -91,7 +91,7 @@ SensorDoor door(3);
  * Main Sketch
  */
 
-#define DOOR_SECONDS (20)
+#define DOOR_SECONDS (300)
 
 bool DoorWokeMeUp = false;
 
