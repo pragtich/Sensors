@@ -27,7 +27,7 @@
 
 // General settings
 #define SKETCH_NAME "Deur01"
-#define SKETCH_VERSION "1.45"
+#define SKETCH_VERSION "1.49"
 
 #define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_RFM69
@@ -35,23 +35,13 @@
 
 #define USE_I2C_EEPROM
 #define MY_OTA_FIRMWARE_FEATURE
-#define MY_OTA_USE_I2C_EEPROM 
+#define MY_OTA_USE_I2C_EEPROM
+
+// Hopeless: The library overwrites these values:
+#define MY_OTA_RETRY (50)
+#define MY_OTA_RETRY_DELAY (1000u) // default 500u
 
 //#define MY_NODE_ID 99
-
-// Message signing settings
-//#define MY_SIGNING_SOFT
-//#define MY_SIGNING_SOFT_RANDOMSEED_PIN 7
-//#define MY_SIGNING_REQUEST_SIGNATURES
-//#define MY_SIGNING_ATSHA204
-//#define MY_SIGNING_ATSHA204_PIN 4
-//#define MY_SIGNING_REQUEST_SIGNATURES
-
-// OTA Firmware update settings
-//#define MY_OTA_FIRMWARE_FEATURE
-//#define OTA_WAIT_PERIOD 300
-//#define FIRMWARE_MAX_REQUESTS 2
-//#define MY_OTA_RETRY 2
 
 // Advanced settings
 #define MY_BAUD_RATE 9600
@@ -59,120 +49,7 @@
 
 #define MY_SMART_SLEEP_WAIT_DURATION_MS 2000
 //#define MY_DISABLE_RAM_ROUTING_TABLE_FEATURE
-#define MY_SIGNAL_REPORT_ENABLED
-
-// Optimizations when running on 2032 Coin Cell. Also set node.setSleepBetweenSend(500) and run the board at 1Mhz
-//#define MY_TRANSPORT_UPLINK_CHECK_DISABLED
-//#define MY_TRANSPORT_WAIT_READY_MS  5000
-//#define MY_SLEEP_TRANSPORT_RECONNECT_TIMEOUT_MS 2000
-//#define MY_PARENT_NODE_ID 0
-//#define MY_PARENT_NODE_IS_STATIC
-
-/**********************************
- * MySensors gateway configuration
- */
- 
-// Common gateway settings
-//#define MY_REPEATER_FEATURE
-
-// Serial gateway settings
-//#define MY_GATEWAY_SERIAL
-
-// Ethernet gateway settings
-//#define MY_GATEWAY_W5100
-
-// ESP8266 gateway settings
-//#define MY_GATEWAY_ESP8266
-//#define MY_ESP8266_SSID ""
-//#define MY_ESP8266_PASSWORD ""
-
-// Gateway networking settings
-//#define MY_IP_ADDRESS 192,168,178,87
-//#define MY_IP_GATEWAY_ADDRESS 192,168,178,1
-//#define MY_IP_SUBNET_ADDRESS 255,255,255,0
-//#define MY_PORT 5003
-//#define MY_GATEWAY_MAX_CLIENTS 2
-//#define MY_USE_UDP
-
-// Gateway MQTT settings
-//#define MY_GATEWAY_MQTT_CLIENT
-//#define MY_CONTROLLER_IP_ADDRESS 192, 168, 178, 68
-//#define MY_PORT 1883
-//#define MY_MQTT_USER "username"
-//#define MY_MQTT_PASSWORD "password"
-//#define MY_MQTT_CLIENT_ID "mysensors-1"
-//#define MY_MQTT_PUBLISH_TOPIC_PREFIX "mygateway1-out"
-//#define MY_MQTT_SUBSCRIBE_TOPIC_PREFIX "mygateway1-in"
-
-// Gateway inclusion mode
-//#define MY_INCLUSION_MODE_FEATURE
-//#define MY_INCLUSION_BUTTON_FEATURE
-//#define MY_INCLUSION_MODE_DURATION 60
-//#define MY_DEFAULT_LED_BLINK_PERIOD 300
-
-// Gateway Leds settings
-//#define MY_DEFAULT_ERR_LED_PIN 4
-//#define MY_DEFAULT_RX_LED_PIN  5
-//#define MY_DEFAULT_TX_LED_PIN  6
-
-/***********************************
- * NodeManager modules for supported sensors
- */
-
-//#define USE_BATTERY
-//#define USE_SIGNAL
-//#define USE_ANALOG_INPUT
-//#define USE_THERMISTOR
-//#define USE_ML8511
-//#define USE_ACS712
-//#define USE_DIGITAL_INPUT
-//#define USE_DIGITAL_OUTPUT
-//#define USE_DHT
-//#define USE_SHT21
-//#define USE_INTERRUPT
-//#define USE_DS18B20
-//#define USE_BH1750
-//#define USE_MLX90614
-//#define USE_BME280
-//#define USE_BMP085
-//#define USE_BMP280
-//#define USE_SONOFF
-//#define USE_HCSR04
-//#define USE_MCP9808
-//#define USE_MQ
-//#define USE_MHZ19
-//#define USE_AM2320
-//#define USE_TSL2561
-//#define USE_PT100
-//#define USE_DIMMER
-//#define USE_PULSE_METER
-//#define USE_PMS
-//#define USE_VL53L0X
-//#define USE_SSD1306
-//#define USE_SHT31
-//#define USE_SI7021
-//#define USE_CHIRP
-//#define USE_HD44780
-//#define USE_TTP
-//#define USE_SERVO
-//#define USE_APDS9960
-//#define USE_NEOPIXEL
-
-/***********************************
- * NodeManager built-in features
- */
-
-// Enable/disable NodeManager's features
-/* #define FEATURE_POWER_MANAGER OFF */
-/* #define FEATURE_INTERRUPTS ON */
-/* #define FEATURE_CONDITIONAL_REPORT OFF */
-/* #define FEATURE_EEPROM OFF */
-/* #define FEATURE_SLEEP ON */
-/* #define FEATURE_RECEIVE ON */
-/* #define FEATURE_TIME OFF */
-/* #define FEATURE_RTC OFF */
-/* #define FEATURE_SD OFF */
-/* #define FEATURE_HOOKING ON */
+//#define MY_SIGNAL_REPORT_ENABLED
 
 #define NODEMANAGER_DEBUG         OFF
 #define NODEMANAGER_INTERRUPTS    ON
@@ -204,9 +81,9 @@ SensorBattery battery;
 
 //SensorConfiguration configuration(node);
 
-#include <sensors/SensorSignal.h>
-SensorSignal signal;
-SensorSignal signaltx(300);
+//#include <sensors/SensorSignal.h>
+//SensorSignal signal;
+//SensorSignal signaltx(300);
 #include <sensors/SensorDoor.h>
 SensorDoor door(3);
 
@@ -300,12 +177,12 @@ void before() {
   door.setSetupHook(DoorSetup);
   door.setPreLoopHook(DoorLoop);
   door.setInterruptHook(DoorInterrupt);
-
+  /*
   signal.setReportIntervalMinutes(60);
   signaltx.setReportIntervalMinutes(60);
   signaltx.setSignalCommand(SR_TX_POWER_LEVEL);
   signaltx.getChild(0)->setDescription("TX level");
-  
+  */
   /*
   * Configure your sensors above
   */
