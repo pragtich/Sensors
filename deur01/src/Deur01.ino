@@ -36,10 +36,7 @@
 #define USE_I2C_EEPROM
 #define MY_OTA_FIRMWARE_FEATURE
 #define MY_OTA_USE_I2C_EEPROM
-
-// Hopeless: The library overwrites these values:
-#define MY_OTA_RETRY (50)
-#define MY_OTA_RETRY_DELAY (1000u) // default 500u
+// Retry options defined in pragtich.h
 
 //#define MY_NODE_ID 99
 
@@ -106,8 +103,7 @@ void DoorLoop(Sensor *sensor) {
     // read the value
     
     int value = digitalRead(sensor->getInterruptPin());
-    // Does not work because the variable is protected
-    // if (sensor->_invert_value_to_report) value = !value;
+
     value = !value;
 
     Child* child = sensor->children.get(1);

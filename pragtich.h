@@ -18,6 +18,12 @@ This file should contain the general network definitions, general to all devices
 
 #define MY_RFM69_CSMA_LIMIT_DBM (-80)       // TX will wait until rx RSSI below this number; default -95
 
+// Only relevant when OTA enabled on the node
+// Requires patched mysensors
+#define MY_OTA_RETRY (50)
+#define MY_OTA_RETRY_DELAY (1000u) // default 500u
+
+
 // Other
 #define MY_SPLASH_SCREEN_DISABLED
 
