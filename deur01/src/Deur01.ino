@@ -27,7 +27,7 @@
 
 // General settings
 #define SKETCH_NAME "Deur01"
-#define SKETCH_VERSION "1.50"
+#define SKETCH_VERSION "1.51"
 
 //#define MY_DEBUG
 //#define MY_DEBUG_VERBOSE_RFM69
