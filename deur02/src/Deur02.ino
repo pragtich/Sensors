@@ -159,8 +159,8 @@ void before() {
   // Disable smartSleep (messages that I am not using)
   //nodeManager.setSmartSleep(false);
   // Disable soft ack (is useless anyway, and causes issue)
-  // This is the default, do this to be sure
-  //nodeManager.setAck(false);
+  // This is the default?, do this to be sure
+  nodeManager.setAck(false);
   // Pause between messages
   //  nodeManager.setSleepBetweenSend(500);
   // Invert value (zero is unlocked). This should reduce power consumption through the pull-up
